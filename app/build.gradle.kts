@@ -7,6 +7,15 @@ android {
     namespace = "com.example.demo"
     compileSdk = 34
 
+    signingConfigs {
+        register("release") {
+            keyAlias = "demo"
+            keyPassword = "demo123"
+            storeFile = file("demo.jks")
+            storePassword = "demo123"
+        }
+    }
+
     defaultConfig {
         applicationId = "com.example.demo"
         minSdk = 24
@@ -24,6 +33,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("release")
         }
     }
     compileOptions {
